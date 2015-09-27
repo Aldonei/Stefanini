@@ -1,0 +1,226 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<MVCWebApp.Models.Client>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Customer List";
+    var user = ((Microsoft.AspNet.Identity.EntityFramework.IdentityUser)(Session["user"]));
+            
+}
+<br />
+    
+    
+    
+<div class="row">
+    <!-- Logged User -->
+    
+
+    <div class="col-md-8">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-horizontal"}))
+        {
+            <!-- Name -->
+            <div class="form-group">
+                @Html.Label("Name", new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBox("SearchName", ViewBag.FilterName as string, new { @class = "form-control" })
+                </div>
+            </div>
+            <!-- City -->
+            <div class="form-group">
+                @Html.Label("City", new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("SearchCity", (SelectList)ViewBag.CityCombo, "All", new { id = "ddlCity", @class = "form-control" })
+                </div>
+            </div>
+            <!-- Region -->
+            <div class="form-group">
+                @Html.Label("Region", new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("SearchRegion", (SelectList)ViewBag.RegionCombo, "All", new { id = "ddlRegion", @class = "form-control" })
+                </div>
+            </div>
+            <!-- Gender -->
+            <div class="form-group">
+                @Html.Label("Gender", new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("SearchGender", (SelectList)ViewBag.GenderCombo, "All", new { id = "ddlGender", @class = "form-control" })
+                </div>
+            </div>
+            <!-- Classification -->
+            <div class="form-group">
+                @Html.Label("Classification", new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("SearchClassification", (SelectList)ViewBag.ClassificationCombo, "All", new { id = "ddlClassification", @class = "form-control" })
+                </div>
+            </div>
+            <!-- Seller Eu poderia usar um Jquery para isto .show() .hide() -->
+            if (@user.UserName == "Admin") {
+                <div class="form-group" id ="divSeller" >
+                    @Html.Label("Seller", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("SearchSeller", (SelectList)ViewBag.SellerCombo, "All", new { id = "ddlSeller", @class = "form-control" })
+                    </div>
+                </div>
+            }
+            
+            <!-- Last Purchase -->
+            <div class="form-group">
+                @Html.Label("Last Purchase", new { @class = "col-md-2 control-label" })
+                <div class="span5 col-md-5" id="sandbox-container">
+                    <div class="input-daterange input-group" id="datepicker">
+                        @Html.TextBox("SearchStartDate", ViewBag.FilterStartDate as string, new { @class = "input-sm form-control" })
+                        <span class="input-group-addon">Until</span>
+                        @Html.TextBox("SearchEndDate", ViewBag.FilterEndDate as string, new { @class = "input-sm form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Search" class="btn btn-default" />
+                    <input type="button" value="Clear Fields" class="btn btn-default" onclick="ClearFields()" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    <!-- Customer List -->
+    <table class="table">
+        <thead>
+            <tr class="active">
+                <!-- Name -->
+                <th>
+                    @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.FilterName })
+                </th>
+                <!-- Phone -->
+                <th>
+                    Phone
+                </th>
+                <!-- City -->
+                <th>
+                    @Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm, currentFilter = ViewBag.FilterName })
+                </th>
+                <!-- Region -->
+                <th>
+                    @Html.ActionLink("Region", "Index", new { sortOrder = ViewBag.RegionSortParm, currentFilter = ViewBag.FilterName })
+                </th>
+                <!-- Gender -->
+                <th>
+                    @Html.ActionLink("Gender", "Index", new { sortOrder = ViewBag.GenderSortParm, currentFilter = ViewBag.FilterName })
+                </th>
+                <!-- Classification -->
+                <th>
+                    @Html.ActionLink("Classification", "Index", new { sortOrder = ViewBag.ClassificationSortParm, currentFilter = ViewBag.FilterName })
+                </th>
+                <!-- Last Purchase -->
+                <th>
+                    @Html.ActionLink("Last Purchase", "Index", new { sortOrder = ViewBag.LastPurchaseSortParm, currentFilter = ViewBag.FilterName })
+                </th>
+                <!-- Seller -->
+                @if (user.UserName == "Admin") {
+                    <th>
+                        @Html.ActionLink("Seller", "Index", new { sortOrder = ViewBag.SellerSortParm, currentFilter = ViewBag.FilterName })
+                    </th>
+                }
+
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <!-- Name -->
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <!-- Phone -->
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <!-- City -->
+                <td>
+                    @Html.DisplayFor(modelItem => item.Region.City.Name)
+                </td>
+                <!-- Region -->
+                <td>
+                    @Html.DisplayFor(modelItem => item.Region.Name)
+                </td>
+                <!-- Gender shows Female and Male -->
+                <td>
+                    @if (item.Gender == "M")
+                    {
+                        @Html.Label("Male")
+                    }
+                    else {
+                        @Html.Label("Female")
+                    }
+                </td>
+                <!-- Classification -->
+                <td>
+                    @Html.DisplayFor(modelItem => item.Classification.Name)
+                </td>
+                <!-- Last Purchase -->
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastPurchase)
+                </td>
+                <!-- Seller -->
+                @if (user.UserName == "Admin") {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Seller.UserName)
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+</div>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+<!-- TODO: Usar um JSON para enviar o objeto da consulta -->
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, searchName = ViewBag.FilterName, 
+    searchStartDate = ViewBag.FilterStartDate, searchGender = ViewBag.GenderCombo, 
+    searchClassification = ViewBag.ClassificationCombo, searchRegion = ViewBag.RegionCombo, 
+    searchCity = ViewBag.CityCombo, searchSeller = ViewBag.SellerCombo}))
+
+<b>User: @user.UserName</b>
+
+<!-- Java Script -->
+<script type="text/javascript">
+    $("#datepicker").datepicker({
+        changeMonth: true,
+        onClose: function (selectedDate) {
+            $("#SearchEndDate").datepicker("option", "minDate", selectedDate);
+        }
+    });
+
+    $("#SearchEndDate").datepicker({
+        changeMonth: true,
+    });
+
+    function ClearFields() {
+        $("#SearchName").val("");
+        SetValueSelectBox("#ddlGender", "");
+        SetValueSelectBox("#ddlCity", "");
+        SetValueSelectBox("#ddlRegion", "");
+        SetValueSelectBox("#ddlClassification", "");
+        SetValueSelectBox("#ddlSeller", "");
+        
+        $("#SearchStartDate").val("");
+        $("#SearchEndDate").val("");
+
+        $("#SearchName").focus();
+    }
+        
+    function SetValueSelectBox(selectName, valueSelect) {
+        if ((valueSelect != null) && (valueSelect != undefined)) {
+            $(selectName).val(valueSelect);
+        }
+    }
+</script>
+

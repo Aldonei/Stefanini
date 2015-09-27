@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Solution Explanation";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+<hr />
+<h4>Customer contact management</h4>
+<p>A small business of sales is looking for a system to manage the customer contact. 
+The system should show a login page every time a user try to access the site. In this page, the sellers 
+should be identified using the email account of the company and his/her password in the system. 
+After a successfully login, the sellers must see and search for some data and classification 
+(VIP, Regular and Sporadic) of his/her clients and plan his/her future sales with the information. 
+Currently, the company operates only in Porto Alegre, but in the future there is an expansion plan to
+other cities. For a better administration and system control, the company would like a user with full access 
+to contacts of all sellers.</p>
+
+<h4>Acceptance Criteria</h4>
+<b>Login Page</b><br />
+- The login page should be displayed whenever a user tries to access the system.<br />
+- The password must be encrypted using the md5 hash algorithm. <br />
+- If a user types a wrong User Name and/or Password, the system must show the message <br />
+“<b><i>The User Name and/or Password entered is invalid. Please try again.” </i></b> and the fields should be displayed with a red border. <br />
+- When a user accesses the system successfully, the user should be redirected to page “Customer List”.<br /><br />
+
+<b>Initial users:</b><br />
+- User Name: Admin.   Password: admin123.<br />
+- User Name: Seller1. Password: seller1123.<br />
+- User Name: Seller2. Password: seller2123.
+
+<hr />
+<h4>Customer List Page</h4>
+- The sellers should have access only to their clients.<br />
+- The clients are not shared between the sellers.<br />
+- The system must have an administrator user with total access to records of all customers in the system.<br />
+- For the sellers, the grid shall display the following columns: Classification, Name, Phone, Gender, City, Region and Last Purchase.<br />
+- For the administrator, the grid shall display the following columns: Classification, Name, Phone, Gender, City, Region, Last Purchase and Seller.<br />
+- When a user clicks on the header column of grid, the grid must be ordered alphabetically asc / desc.<br />
+- The user must have the option to clear the search fields.<br />
+- The filters are not mandatory.
+
+<hr />
+<h4>Filters</h4>
+- <b>Name</b>: Text field to free typing. The user has the option to search by a name portion.<br />
+- <b>Gender</b>: The user should be able to select one or no option at a time.<br />
+- <b>City</b>: The user should be able to select one or no option at a time.<br />
+- <b>Region</b>: The user should be able to select one or no option at a time. If the City field is selected, the region data must be filtered by the selected city.<br />
+- <b>Last Purchase</b>: The user must have the option to search by a date range.<br />
+- <b>Classification</b>: The user should be able to select one or no option at a time.<br />
+- <b>Seller</b>: The user should be able to select one or no option at a time. This field must be visible only to administrator user.<br />
