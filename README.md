@@ -58,3 +58,5 @@
 	4. Tive problema com o JQuery, não descobri ainda o que foi.
 	5. P R O B L E M A que consumiu algum tempo desnecessário foi que em algumas tabelas o GUID estava com letras 			maúsculas e outras minúsculas. Por exempo o GUID RegionId na tabela Client estava com o GUID minúsculo, no entanto 	na tabela Region este GUID estava maiúsculo, ou seja, comparava b100-30ee91d4cad6 com B100-30EE91D4CAD6 			(Region.Id.Equals(Client.Region.Id) = Restulado NULL.
 	6. Havia combinado para entregar no Domingo à tarde às 15 horas e isto foi antecipado para Sábado à tarde às 15 		horas.
+	7. Como o tempo foi reduzido, alguns procedimentos não ficaram como eu gostaria que ficasse. Isto eu comentei no
+	código fonte.
