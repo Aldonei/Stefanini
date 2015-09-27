@@ -15,18 +15,15 @@
 
 # Instalação
 	1. Faça download do arquivo zip: Stefanini-master.zip.
-	2. Descompacte o arquivo .zip. (I M P O R T A N T E) - Por favor observe esta construção do diretório onde está a 		base de dados. Caso queira trocar o local, favor trocar dentro da HomeController.cs (private IEnumerable<Client> 		ResultFromClient(ClientFilter filter))  
+	2. Descompacte o arquivo .zip. (I M P O R T A N T E) - Por favor observe esta construção do diretório onde está a 		base de dados. Caso queira trocar o local, favor trocar dentro da HomeController.cs (private IEnumerable<Client>		ResultFromClient(ClientFilter filter))  
 	3. DataSource=(LocalDB)\v11.0;AttachDbFilename='C:\Cursos\Testes\MVCWebApp\App_Data\Database.mdf'
-	4. Abre este o arquivo MVCWebApp.sln (solução) no Microsoft Visual Studio Professional 2013 ou Visual Studio 2013 Community Edition.
+	4. Abre este o arquivo MVCWebApp.sln (solução) no Microsoft Visual Studio Professional 2013 ou Visual Studio 2013 		Community Edition.
 	5. Execute-o com o comando Run. (http://localhost:55832/Account/Login) 
-
-
 
 # Telas do sistema
 	Basicamente existem 4 telas: As mais importantes são a de login (User Identification) e a listagem dos clientes 		(Customer List). Também tem-se	uma Solution Explanation que informa o que deve ser feito, e uma última para enxer 	linguiça que não serve para nada, a tela de Contact.   
 	
 	LOGIN
-		
 	1. Formulário de Login para identificar usuários do sistema com Usuário e Senha (Login.cshtml). 
 	2. ID - Usuário - Senha (MD5) - Apenas uma ilustração. Os usuário cadastrados estão logo abaixo.
 	3. 682ca6cd-6502-4ae3-bf45-5153beb9c0a0	Admin 0ae67d1-e32b-4275-9cc9-7236771daeec
@@ -55,9 +52,9 @@
 	d) Se a entrada das datas a final for menor que a inicial. Não traz nada, pois não é um período válido. 
 	
 # Observações finais
-	1. Procurei seguir as orientação do documento enviado. Apenas na tela de Login eu troquei o e-mail pelo User Name. 		Achei mais apropriado e de qualquer forma não atrapalha na execução do sistema.
+	1. Procurei seguir as orientação do documento enviado. Apenas na tela de Login eu troquei o e-mail pelo User Name. 		Achei mais apropriado e de qualquer forma não atrapalhava na execução do sistema.
 	2. Obtive algumas informações do site da Microsoft para obter alguma ajuda quando me apertei. 
 	3. O Bootstrap é um pouco novo para mim, ainda estou aprendendo a usá-lo
 	4. Tive problema com o JQuery, não descobri ainda o que foi.
 	5. P R O B L E M A que consumiu algum tempo desnecessário foi que em algumas tabelas o GUID estava com letras 			maúsculas e outras minúsculas. Por exempo o GUID RegionId na tabela Client estava com o GUID minúsculo, no entanto 	na tabela Region este GUID estava maiúsculo, ou seja, comparava b100-30ee91d4cad6 com B100-30EE91D4CAD6 			(Region.Id.Equals(Client.Region.Id) = Restulado NULL.
-	
+	6. Havia combinado para entregar no Domingo à tarde às 15 horas e isto foi antecipado para Sábado à tarde às 15 		horas.
