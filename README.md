@@ -20,7 +20,11 @@
 	4. Abre este o arquivo MVCWebApp.sln (solução) no Microsoft Visual Studio Professional 2013 ou Visual Studio 2013 Community Edition.
 	5. Execute-o com o comando Run. (http://localhost:55832/Account/Login) 
 
+
+
 # Telas do sistema
+	Basicamente existem 4 telas: As mais importantes são a de login (User Identification) e a listagem dos clientes (Customer List). Também tem-se	uma Solution Explanation que informa o que deve ser feito,  e uma última para enxer linguiça que não serve para nada, a tela de Contact.   
+	
 	1. Formulário de Login para identificar usuários do sistema com Usuário e Senha (Login.cshtml). 
 	2. ID - Usuário - Senha (MD5) - Apenas uma ilustração. Os usuário cadastrados estão logo abaixo.
 	3. 682ca6cd-6502-4ae3-bf45-5153beb9c0a0	Admin 0ae67d1-e32b-4275-9cc9-7236771daeec
@@ -36,3 +40,6 @@
 	
 	User Name: Seller2
 	Password: seller2
+# 
+
+Obtive algumas informações do siste da Microsoft para obter alguma ajuda. https://code.msdn.microsoft.com/ASPNET-MVC-5-Bootstrap-30-622be454. 
