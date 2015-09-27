@@ -60,3 +60,7 @@
 	6. Havia combinado para entregar no Domingo à tarde às 15 horas e isto foi antecipado para Sábado à tarde às 15 		horas.
 	7. Como o tempo foi reduzido, alguns procedimentos não ficaram como eu gostaria que ficasse. Isto eu comentei no
 	código fonte.
+	8. Existem alguns problemas de SESSION que causam alguns erros inesperados, mas o caminho feliz está funcionando.
+	
+
+
